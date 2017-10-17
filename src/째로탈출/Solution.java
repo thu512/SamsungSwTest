@@ -72,16 +72,15 @@ class Solution {
 			if(cur.cnt>10){
 				continue;
 			}
-			if(cur.r_r==O_r && cur.r_c==O_c && cur.b_r!=O_r && cur.b_c!=O_c){
-				result=true;
-				return;
-			}
 
+			//System.out.println("br: "+cur.b_r+" bc: "+cur.b_c+" rr: "+cur.r_r+" rc: "+cur.r_c+" cnt: "+cur.cnt);
 			for(int i=0; i<4; i++){
 				int btr=cur.b_r;
 				int btc=cur.b_c;
 				int rtr=cur.r_r;
 				int rtc=cur.r_c;
+				boolean b=false;
+				boolean r=false;
 
 				for(int x=0; x<2; x++){
 					while(true){
@@ -90,6 +89,11 @@ class Solution {
 						}else{
 							btr+=dr[i];
 							btc+=dc[i];
+						}
+						//System.out.println("br: "+btr+" bc: "+btc);
+						if(map[btr][btc]=='O'){
+							//System.out.println("br: "+btr+" bc: "+btc+"체크");
+							b=true;
 						}
 					}
 
@@ -100,14 +104,29 @@ class Solution {
 							rtr+=dr[i];
 							rtc+=dc[i];
 						}
+						//System.out.println(" rr: "+rtr+" rc: "+rtc);
+						if(map[rtr][rtc]=='O'){
+							//System.out.println(" rr: "+rtr+" rc: "+rtc+"체크");
+							r=true;
+						}
 					}
 				}
+				if(b&&r){
+					result=false;
+					return;
+				}
+				if(!b && r){
+					result=true;
+					return;
+				}
+
+
 				if(btr==cur.b_r && btc==cur.b_c && rtr==cur.r_r && rtc==cur.r_c){
 					continue;
 				}
-				if(visitB[btr][btc]!=1 && visitR[rtr][rtc]!=1){
+				//if(visitB[btr][btc]!=1 && visitR[rtr][rtc]!=1){
 					queue.add(new Ball(rtr,rtc,btr,btc,cur.cnt+1));
-				}
+				//}
 
 			}
 
@@ -123,7 +142,7 @@ class Ball{
 	int r_c;
 	int b_r;
 	int b_c;
-
+	int dir;
 	int cnt;
 
 	public Ball(int r_r, int r_c, int b_r, int b_c, int cnt) {
