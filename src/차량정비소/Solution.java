@@ -92,7 +92,9 @@ class Solution {
 
       for (int i = 0; i < a1.size(); i++) {
 
-        System.out.println("n: "+(a1.get(i).getN()+1)+" / 접수 "+a1.get(i).getA()+" 시작 "+a1.get(i).getA_start()+" 끝: "+a1.get(i).getA_end());
+        System.out.println(
+            "n: " + (a1.get(i).getN() + 1) + " / 접수 " + a1.get(i).getA() + " 시작 " + a1.get(i)
+                .getA_start() + " 끝: " + a1.get(i).getA_end());
       }
 
       for (int i = 0; i < a1.size(); i++) {
@@ -131,11 +133,22 @@ class Solution {
       }
       for (int i = 0; i < b1.size(); i++) {
 
-        System.out.println("n: "+(b1.get(i).getN()+1)+" at: "+b1.get(i).getAt()+" 정비 "+b1.get(i).getB()+" / stime "+b1.get(i).getB_start()+" / etime "+b1.get(i).getB_end());
+        System.out.println("n: "
+            + (b1.get(i).getN() + 1)
+            + " at: "
+            + b1.get(i).getAt()
+            + " 정비 "
+            + b1.get(i).getB()
+            + " / stime "
+            + b1.get(i).getB_start()
+            + " / etime "
+            + b1.get(i).getB_end());
       }
       int result = 0;
       for (int i = 0; i < b1.size(); i++) {
-        System.out.println("n: "+(b1.get(i).getN()+1)+" / 접수 "+b1.get(i).getA()+" 정비 "+b1.get(i).getB());
+        System.out.println(
+            "n: " + (b1.get(i).getN() + 1) + " / 접수 " + b1.get(i).getA() + " 정비 " + b1.get(i)
+                .getB());
         if ((A == b1.get(i).getA()) && (B == b1.get(i).getB())) {
           result += (b1.get(i).getN() + 1);
         }
