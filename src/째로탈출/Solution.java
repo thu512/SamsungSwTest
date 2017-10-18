@@ -66,10 +66,9 @@ class Solution {
 
 		while(!queue.isEmpty()){
 			Ball cur=queue.poll();
-			visitR[cur.r_r][cur.r_c]=1;
-			visitB[cur.b_r][cur.b_c]=1;
 
-			if(cur.cnt>10){
+			//이동횟수가 10회 이상이면 패스
+			if(cur.cnt>=10){
 				continue;
 			}
 
@@ -82,23 +81,36 @@ class Solution {
 				boolean b=false;
 				boolean r=false;
 
+
+				//같은방향으로 2번 돌려서 빨간공 파란공 붙어있을때 움직임을 처리
 				for(int x=0; x<2; x++){
+
+				  //파란공 이동
 					while(true){
-						if(map[btr+dr[i]][btc+dc[i]]=='#' || (btr+dr[i]==rtr&&btc+dc[i]==rtc)){
+
+					  //벽이거나 옆에 빨간공있으면 멈춤. 빨간공이 구멍에 빠진 상태가 아니거나 -> 구멍에 빠진상태면 겹쳐서 구멍으로 이동
+						if(map[btr+dr[i]][btc+dc[i]]=='#' || (!r && btr+dr[i]==rtr&&btc+dc[i]==rtc)){
 							break;
-						}else{
+						}
+						//멈출때 까지 이동
+						else{
 							btr+=dr[i];
 							btc+=dc[i];
 						}
 						//System.out.println("br: "+btr+" bc: "+btc);
-						if(map[btr][btc]=='O'){
+
+            //파란공이 구멍에 빠지면 체크
+            if(map[btr][btc]=='O'){
 							//System.out.println("br: "+btr+" bc: "+btc+"체크");
 							b=true;
+							break;
 						}
 					}
 
+					//빨간공 이동
 					while(true){
-						if(map[rtr+dr[i]][rtc+dc[i]]=='#' || (rtr+dr[i]==btr && rtc+dc[i]==btc)){
+            //벽이거나 옆에 파란공있으면 멈춤. 파란공이 구멍에 빠진 상태가 아니거나 -> 구멍에 빠진상태면 겹쳐서 구멍으로 이동
+						if(map[rtr+dr[i]][rtc+dc[i]]=='#' || (!b && rtr+dr[i]==btr && rtc+dc[i]==btc)){
 							break;
 						}else{
 							rtr+=dr[i];
@@ -108,25 +120,24 @@ class Solution {
 						if(map[rtr][rtc]=='O'){
 							//System.out.println(" rr: "+rtr+" rc: "+rtc+"체크");
 							r=true;
+							break;
 						}
 					}
 				}
-				if(b&&r){
-					result=false;
-					return;
-				}
-				if(!b && r){
-					result=true;
-					return;
-				}
 
 
-				if(btr==cur.b_r && btc==cur.b_c && rtr==cur.r_r && rtc==cur.r_c){
-					continue;
+        //파란공 빠지면 패스
+        if(b){
+          continue;
+        }
+
+				//빨간공이 구멍에 빠지면 성공 탈출!
+				if(r){
+          result=true;
+          return;
 				}
-				//if(visitB[btr][btc]!=1 && visitR[rtr][rtc]!=1){
-					queue.add(new Ball(rtr,rtc,btr,btc,cur.cnt+1));
-				//}
+
+        queue.add(new Ball(rtr,rtc,btr,btc,cur.cnt+1));
 
 			}
 
