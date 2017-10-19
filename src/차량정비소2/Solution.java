@@ -53,12 +53,17 @@ class Solution {
     pwp=0;
     prp=0;
 
-
-    _sort(recq,0,K-1);
-
+    //for(int i=0; i<K; i++){
+    //  System.out.println(recq[i].k+" / "+recq[i].t);
+    //}
+    //_sort(recq,0,K-1);
+    //System.out.println("====================");
+    //for(int i=0; i<K; i++){
+    //  System.out.println(recq[i].k+" / "+recq[i].t);
+    //}
 
     for(int cnt=1, time=recq[0].t; cnt<=K; ++time){
-      for(int i=0; i<N; ++i){ //접수창구번호 순대로
+      for(int i=1; i<=N; ++i){ //접수창구번호 순대로
         if(rec[i].t > 0){
           if(--rec[i].t == 0){
             repq[pwp++].set(i,rec[i].k,time);
@@ -69,6 +74,7 @@ class Solution {
           if(crp<K && recq[crp].t <=time){
             cus customer = recq[crp++];
             rec[i].set(customer.k,a[i]);
+            //System.out.println("접수창구 고객번호:"+customer.k+" / 창구 번호:"+i);
           }
         }
       }
@@ -84,7 +90,9 @@ class Solution {
           if(prp<pwp){
             prc prc = repq[prp++];
             rep[i].set(prc.k , b[i]);
+            System.out.println("고객번호:"+prc.k+" / 접수 창구 번호:"+prc.idx+" / 정비창구: "+i);
             if(prc.idx == A && i==B){
+              //System.out.println("고객번호:"+prc.k+" / 접수 창구 번호:"+prc.idx+" / 정비창구: "+i);
               ans += prc.k;
             }
           }
@@ -138,9 +146,6 @@ class Solution {
       System.out.println("#" + (test_case + 1) + " "+solv());
     }
   }
-
-
-
 }
 
 class cus{

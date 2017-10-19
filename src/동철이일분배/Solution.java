@@ -37,12 +37,12 @@ class Solution {
 	}
 	
 	public static void dfs(int r,  double val) {
-		
+
 		if(r==n-1) {
 			max=Math.max(max,val);
 			return;
 		}
-		
+
 		for(int i=0; i<n; i++) {
 			if(check[i]!=1) {
 				if(r==n-2 && max>=val*work[r+1][i]) {
