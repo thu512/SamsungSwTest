@@ -71,6 +71,8 @@ class Solution {
 
       time = 0;
       ArrayList<Customer> b1 = new ArrayList<>();
+
+      //정비소 들어가는 순대로 정렬
       Collections.sort(a1, new Comparator<Customer>() {
         @Override
         public int compare(Customer o1, Customer o2) {
@@ -112,7 +114,7 @@ class Solution {
           }
         }
         //정비 창구에 고객들 배치
-        //비어있는 곳에 먼저 넣음 도착 시간순대로
+        //비어있는 곳에 먼저 넣음 정렬된 순으로
         for (int i = 0; i < a1.size(); i++) {
           int index = checkBlank(visitB);
           if (time == a1.get(i).getAt()) {
