@@ -8,6 +8,8 @@ class Solution {
 	static int n;
 	static int[] check;
 	static double max=0;
+
+
 	public static void main(String args[]) throws Exception	{
 		
 		
@@ -16,19 +18,17 @@ class Solution {
 		
 		for(int test_case = 1; test_case <= T; test_case++) {
 			n=sc.nextInt();
-			check = new int[n];
-			work = new double[n][n];
-			for(int i=0; i<n; i++) {
-				for(int j=0; j<n; j++) {
+			check = new int[n+1];
+			work = new double[n+1][n+1];
+			for(int i=1; i<=n; i++) {
+				for(int j=1; j<=n; j++) {
 					work[i][j]=sc.nextDouble();
 				}	
 			}
 			
-			for(int i=0; i<n; i++) {
-				check[i]=1;
-				dfs(0, work[0][i]);
-				check[i]=0;
-			}
+
+			dfs(0);
+
 			
 			
 			System.out.printf("#%d %.6f\n",test_case,(max/(Math.pow(100, n)))*100);
@@ -36,31 +36,39 @@ class Solution {
 		}
 	}
 	
-	public static void dfs(int r,  double val) {
+	public static void dfs(int r) {
 
-		if(r==n-1) {
-			max=Math.max(max,val);
-			return;
-		}
-
-		for(int i=0; i<n; i++) {
-			if(check[i]!=1) {
-				if(r==n-2 && max>=val*work[r+1][i]) {
-					return;
+		if(promising(r)){
+			if(r==n) {
+				int sum=1;
+				for(int i=1; i<=n; i++){
+					sum*=work[i][check[i]];
 				}
-				if(work[r+1][i]==0) {
-					return;
-				}
+				max=Math.max(max,sum);
+			}else{
+				for(int i=1; i<=n; i++){
+					check[r+1]=i;
+					dfs(r+1);
 
-				check[i]=1;
-				dfs(r+1,val*work[r+1][i]);
-				check[i]=0;
+				}
 			}
 		}
+
+
 		return;
 	}
 
-
+	public static boolean promising(int i){
+		boolean s=true;
+		int k=0;
+		while(k<i && s){
+			if(check[k]==check[i]){
+				s=false;
+			}
+			k++;
+		}
+		return s;
+	}
 }
 
 
