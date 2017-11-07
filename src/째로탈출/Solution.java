@@ -68,7 +68,7 @@ class Solution {
 			Ball cur=queue.poll();
 
 			//이동횟수가 10회 이상이면 패스
-			if(cur.cnt>=10){
+			if (cur.cnt >= 10) {
 				continue;
 			}
 

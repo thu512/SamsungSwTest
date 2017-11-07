@@ -6,12 +6,12 @@ public class Test {
   static int N;
 
   public static void main(String[] args) {
-    N = 12;
+    N = 5;
     selected = new int[N];
-    for(int i=0; i<12; i++){
+    for(int i=0; i<5; i++){
       selected[i]=i+1;
     }
-    perm(selected,0,12,12);
+    perm(selected,1,4,4);
   }
 
   public static void perm(int[] arr, int depth, int n, int k) {
