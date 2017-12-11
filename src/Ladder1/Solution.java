@@ -1,8 +1,6 @@
 package Ladder1;
 
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Scanner;
 
 class Solution {
@@ -16,10 +14,10 @@ class Solution {
 		
 		
 		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt();
+
 		
 		for(int test_case = 0; test_case < 10; test_case++) {
-			
+			int N = sc.nextInt();
 			
 			map = new int[100][100];
 
@@ -35,7 +33,7 @@ class Solution {
 					}
 				}
 			}
-
+			//System.out.println("( "+a_r+" , "+a_c+" )");
 			//오, 아, 왼, 위
 			int d=3;
 			int result=0;
@@ -50,23 +48,24 @@ class Solution {
 
 				int U_tr=a_r+dr[3];
 				int U_tc=a_c+dc[3];
-
+				//System.out.println("( "+U_tr+" , "+U_tc+" )");
 				if(U_tr==-1){
 					result=U_tc;
+					//System.out.println("( "+U_tr+" , "+U_tc+" )");
 					break;
 				}
 
 				//진행방향 위쪽
 				if(d==3){
 					//오른쪽으로 길이 있을때
-					if(R_tc>=100 && map[R_tr][R_tc]==1){
+					if(R_tc<100 && map[R_tr][R_tc]==1){
 						d=0;
 						a_r=R_tr;
 						a_c=R_tc;
 
 					}
 					//왼쪽으로 길이 있을때
-					else if(L_tc!=-1 && map[L_tr][L_tc]==1){
+					else if(L_tc>-1 && map[L_tr][L_tc]==1){
 						d=2;
 						a_r=L_tr;
 						a_c=L_tc;
