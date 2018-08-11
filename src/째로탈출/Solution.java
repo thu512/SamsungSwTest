@@ -34,7 +34,7 @@ class Solution {
 		map=new char[N][M];
 		visitR=new int[N][M];
 		visitB=new int[N][M];
-
+		
 		for(int i=0; i<N; i++){
 			String line = sc.nextLine();
 			for(int j=0; j<M; j++){

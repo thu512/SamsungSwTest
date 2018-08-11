@@ -7,9 +7,11 @@ public class Test {
   static int N;
 
   public static void main(String[] args) {
-    N = 5;
+    N = 4;
     check = new int[N];
     arr = new int[N];
+
+    //조합
 
 
     for(int i=0; i<N; i++){
