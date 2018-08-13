@@ -1,20 +1,32 @@
 package 디비;
 
 import java.lang.reflect.Method;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Test {
 
     public static void main(String[] args) {
-        // DB 데이터라고 치고 Map 을 이용합니다
-        Map<String, String> map = new HashMap<>();
-        map.put("PERSON_NAME", "에비츄");
-        map.put("PERSON_GENDER", "남자");
-        map.put("PERSON_AGE", "19");
+//        // DB 데이터라고 치고 Map 을 이용합니다
+//        Map<String, String> map = new HashMap<>();
+//        map.put("PERSON_NAME", "에비츄");
+//        map.put("PERSON_GENDER", "남자");
+//        map.put("PERSON_AGE", "19");
+//
+//        Person person = (Person) 창주형메소드(map, Person.class);
+//        System.out.print(person);
 
-        Person person = (Person) 창주형메소드(map, Person.class);
-        System.out.print(person);
+        String date_s = "2018. 6. 21. 12:30";
+        SimpleDateFormat dt = new SimpleDateFormat("yyyyy. mm. dd. HH:mm");
+        try {
+            Date sdate = dt.parse(date_s);
+            System.out.println(sdate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     /*
