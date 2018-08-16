@@ -1,4 +1,4 @@
-package 최적경로2.최적경로;
+package 최적경로2;
 
 
 import java.util.ArrayList;
