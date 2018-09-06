@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/src/SamsungSwTest.iml" filepath="$PROJECT_DIR$/src/SamsungSwTest.iml" />
-          </modules>
+      <module fileurl="file://$PROJECT_DIR$/SamsungSwTest.iml" filepath="$PROJECT_DIR$/SamsungSwTest.iml" />
+    </modules>
   </component>
 </project>

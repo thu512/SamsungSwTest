@@ -7,18 +7,18 @@ public class Test {
   static int N;
 
   public static void main(String[] args) {
-    N = 4;
+    N = 8;
     check = new int[N];
     arr = new int[N];
 
     //조합
 
 
-    for(int i=0; i<N; i++){
-      check[i]=1;
+    for(int i=0; i<4; i++){
+      //check[i]=1;
       arr[0]=i;
       dfs(1);
-      check[i]=0;
+      //check[i]=0;
     }
 
   }
@@ -29,12 +29,12 @@ public class Test {
       print(arr, N);
       return;
     }
-    for (int i = 0; i < N; i++) {
-      if(check[i]==0){
-        check[i]=1;
+    for (int i = 0; i < 4; i++) {
+      if(true){//check[i]==0){
+        //check[i]=1;
         arr[depth]=i;
         dfs(depth+1);
-        check[i]=0;
+        //check[i]=0;
       }
     }
 

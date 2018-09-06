@@ -27,8 +27,18 @@ public class Main {
             map[Integer.parseInt(input[0])][Integer.parseInt(input[1])]=1;
         }
 
+        for (int i = 0; i < 4; i++) {
+            dfs(1, 0, i);
+            if(result != 999999999){
+                break;
+            }
+        }
 
+        if(result == 999999999){
+            result = -1;
+        }
 
+        System.out.println(result);
 
     }
     public static void dfs(int row, int cnt, int target){
@@ -39,15 +49,23 @@ public class Main {
         if(cnt == target){
             if(check()){
                 result = cnt;
-                return;
+            }
+            return;
+        }
+
+        for (int i = row; i <= H; i++) {
+            for (int j = 1; j < N; j++) {
+                if(map[i][j]!=1){
+                    if(map[i][j-1]!=1 && map[i][j+1]!=1){
+                        map[i][j]=1;
+                        dfs(i,cnt+1,target);
+                        map[i][j]=0;
+                    }
+                }
             }
         }
 
-        for (int i = 1; i <= H; i++) {
-
-        }
-
-
+        return;
 
     }
 
@@ -55,12 +73,12 @@ public class Main {
     public static boolean check(){
         int cur = 0;
         boolean flag = false;
-        for (int i = 0; i < N; i++) {
+        for (int i = 1; i <= N; i++) {
             cur=i;
-            for (int j = 0; j < H; j++) {
-                if(map[cur][j]==1){
+            for (int j = 1; j <= H; j++) {
+                if(map[j][cur]==1){
                     cur++;
-                }else if(j>0 && map[cur][j-1]==1){
+                }else if(cur-1>0 && map[j][cur-1]==1){
                     cur--;
                 }
             }
