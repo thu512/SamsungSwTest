@@ -1,4 +1,4 @@
-package 부분수열의합2;
+package 비트마스킹조합;
 
 
 import java.util.Scanner;
