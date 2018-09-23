@@ -7,25 +7,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
-class Solution
-{
+class Solution {
 
     static int n;
-    static int[] indexArr;
-    static int[] check;
     static int min;
     static int[][] arr;
 
-    public static void main(String args[]) throws Exception
-    {
+    public static void main(String args[]) throws Exception {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
         int T;
-        T=Integer.parseInt(bf.readLine());
+        T = Integer.parseInt(bf.readLine());
 
 
-        for(int test_case = 1; test_case <= T; test_case++)
-        {
+        for (int test_case = 1; test_case <= T; test_case++) {
             n = Integer.parseInt(bf.readLine());
 
             arr = new int[n][n];
@@ -40,53 +35,60 @@ class Solution
 
             min = 999999999;
 
-            check = new int[n];
-            indexArr = new int[n];
 
-            for (int i = 0; i < n; i++) {
-                check[i]=1;
-                indexArr[0]=i;
-                dfs(1);
-                check[i]=0;
+
+            for (int i = 0; i < (1 << n); i++) {
+                ArrayList<Integer> indexArr = new ArrayList<>();
+                for (int j = 0; j < n; j++) {
+
+                    if ((i & (1 << j)) != 0) {
+
+                        indexArr.add(j);
+                    }
+                }
+
+                ArrayList<Integer> other = new ArrayList<>();
+                if (indexArr.size() == n / 2) {
+
+                    for (int j = 0; j < n; j++) {
+                        if (!indexArr.contains(j)) {
+
+
+                            other.add(j);
+                        }
+                    }
+
+
+
+                    int result1 = 0;
+                    for (int k = 0; k < n / 2; k++) {
+                        for (int j = 0; j < n / 2; j++) {
+                            if (i == j) {
+                                continue;
+                            }
+                            //System.out.println("i: "+i+" j: "+j);
+                            result1 += arr[indexArr.get(k)][indexArr.get(j)];
+                        }
+                    }
+
+                    int result2 = 0;
+                    for (int k = 0; k < n / 2; k++) {
+                        for (int j = 0; j < n / 2; j++) {
+                            if (i == j) {
+                                continue;
+                            }
+
+                            result2 += arr[other.get(k)][other.get(j)];
+                        }
+                    }
+                    min = Math.min(min, Math.abs(result1 - result2));
+
+                }
+
             }
 
-            System.out.println(min);
+            System.out.println("#"+test_case+" "+min);
         }
     }
 
-    public static void dfs(int depth){
-        if(depth == n){
-//              System.out.println("s1: "+(arr[indexArr[0]][indexArr[1]]+arr[indexArr[1]][indexArr[0]]));
-//              System.out.println("s2: "+(arr[indexArr[2]][indexArr[3]]+arr[indexArr[3]][indexArr[2]]));
-
-            int s1 = 0;
-            for (int i = 0; i < n/2; i+=n/2) {
-                s1 += (arr[indexArr[i]][indexArr[i+1]]+arr[indexArr[i+1]][indexArr[i]]);
-            }
-
-            int s2 = 0;
-            for (int i = n/2; i < n; i+=n/2) {
-                s2 += (arr[indexArr[i]][indexArr[i+1]]+arr[indexArr[i+1]][indexArr[i]]);
-            }
-
-
-
-            //min = Math.min(min, result);
-            for (int i = 0; i < n; i++) {
-                System.out.print(" "+indexArr[i]);
-            }
-            System.out.println();
-            return;
-        }
-
-        for (int i = 0; i < n; i++) {
-            if(check[i]==0){
-                check[i]=1;
-                indexArr[depth]=i;
-                dfs(depth+1);
-                check[i]=0;
-            }
-        }
-
-    }
 }

@@ -1,58 +1,63 @@
-package 톱니바퀴;
+package 톱니바퀴2;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
-public class Main {
+class Solution
+{
     static int[][] topni;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String args[]) throws Exception
+    {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int T;
+        T=Integer.parseInt(bf.readLine());
 
-        topni = new int[4][8];
 
-        String[] input;
-        for (int i = 0; i < 4; i++) {
-            input = bf.readLine().split("");
-            for (int j = 0; j < 8; j++) {
-                topni[i][j] = Integer.parseInt(input[j]);
+        for(int test_case = 1; test_case <= T; test_case++)
+        {
+            topni = new int[4][8];
+
+
+            int n = Integer.parseInt(bf.readLine());
+
+            String[] input;
+            for (int i = 0; i < 4; i++) {
+                input = bf.readLine().split(" ");
+                for (int j = 0; j < 8; j++) {
+                    topni[i][j] = Integer.parseInt(input[j]);
+                }
             }
-        }
-        int n = Integer.parseInt(bf.readLine());
-        int[] dir = new int[4];
 
-        for (int i = 0; i < n; i++) {
-            input = bf.readLine().split(" ");
-            int num = Integer.parseInt(input[0]);
-            int d = Integer.parseInt(input[1]);
+            int[] dir = new int[4];
 
-            makeDir(num, d, dir);
+            for (int i = 0; i < n; i++) {
+                input = bf.readLine().split(" ");
+                int num = Integer.parseInt(input[0]);
+                int d = Integer.parseInt(input[1]);
 
-//            for (int j = 0; j < 4; j++) {
-//                System.out.print(dir[j]);
-//            }
-//            System.out.println("");
-//
-            for (int j = 0; j < 4; j++) {
-                circleArr(dir[j], topni[j]);
+                makeDir(num, d, dir);
+
+
+                for (int j = 0; j < 4; j++) {
+                    circleArr(dir[j], topni[j]);
+                }
+
             }
-//            System.out.println("");
-//            for (int k = 0; k < 4; k++) {
-//                for (int l = 0; l < 8; l++) {
-//                    System.out.print(topni[k][l]);
-//                }
-//                System.out.println("");
-//            }
-//            System.out.println("");
+
+            int result = topni[0][0] == 0 ? 0 : 1;
+            result += topni[1][0] == 0 ? 0 : 2;
+            result += topni[2][0] == 0 ? 0 : 4;
+            result += topni[3][0] == 0 ? 0 : 8;
+
+
+            System.out.println("#"+test_case+" "+result);
+
         }
-        int result = topni[0][0] == 0 ? 0 : 1;
-        result += topni[1][0] == 0 ? 0 : 2;
-        result += topni[2][0] == 0 ? 0 : 4;
-        result += topni[3][0] == 0 ? 0 : 8;
-
-
-        System.out.println(result);
     }
+
 
     public static void makeDir(int num, int d, int[] dir) {
         if (num == 1) {
@@ -261,4 +266,6 @@ public class Main {
             arr[arr.length - 1] = tmp;
         }
     }
+
+
 }
