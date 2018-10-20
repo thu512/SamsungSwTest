@@ -85,7 +85,7 @@ class Solution {
 //						for(int u=0; u<equal.size(); u++) {
 //							System.out.println(equal.get(u).getR()+" / "+equal.get(u).getC()+" / "+equal.get(u).getNum()+" / "+equal.get(u).getDir());
 //						}
-						mis.remove(x);
+						 mis.remove(x);
 						x--;
 						int max=0;
 						int index=0;

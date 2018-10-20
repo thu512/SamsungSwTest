@@ -58,7 +58,7 @@ class Solution {
     }
     public static void dfs(int depth, int val){
         if(check()){
-            //print(val);
+               //print(val);
             min= Math.min(min,val);
             return;
         }
